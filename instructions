@@ -1,0 +1,9 @@
+1.The system must have an installed java 8,preferred version jdk 8 and above.
+2.Download this project and place it in one folder.
+3.Open the file program.txt and copy the code in any IDE(i used eclipse) and save this file.let us assume the name of this be main.java
+4.Copy the entire address of input.txt file and replace it with sample address line number 12 in main.java.
+5.Copy the entire address of output.txt file and replace it with sample address line number 72 in main.java.
+6.Add or remove data in input.txt in same format if needed.
+7.Run main.java file as per your IDE.
+8.In the output screen enter number of employee;
+9.Check the output.txt for generated output.
