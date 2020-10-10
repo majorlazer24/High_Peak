@@ -1,0 +1,88 @@
+import java.io.File;  // Import the File class
+import java.io.FileWriter;
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.io.IOException;
+import java.util.*;
+import java.util.Scanner; // Import the Scanner class to read text files
+
+public class Chui {
+  public static void main(String[] args) {
+	TreeMap<Integer, String> inp = new TreeMap<Integer, String>();
+    try {
+      File myObj = new File("E:\\ABC\\Rectangle\\src\\input.txt");
+      Scanner myReader = new Scanner(myObj);
+      while (myReader.hasNextLine()) {
+        String data = myReader.nextLine();
+        String splitdata[]=data.split(":");
+        inp.put(Integer.parseInt(splitdata[1]),splitdata[0]);
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+    System.out.println(inp);
+    System.out.println("Enter the number of employees:");
+    Scanner sc=new Scanner(System.in);
+    int empno=sc.nextInt();
+    System.out.println(empno);
+    
+    System.out.println(inp.size());
+    int keyarray[]=new int[inp.size()];
+    int j=0;
+    for (int i : inp.keySet()) {
+    	  keyarray[j++]=i;
+    	}
+    for(int i=0;i<inp.size();i++) {
+    	System.out.println(keyarray[i]);
+    }
+    
+    j=inp.size()-empno;
+    int min=999999999;
+    int mini=0;
+    int minj=0;
+    for(int i=inp.size()-1;i>=(empno-1);i--) {
+    	if((keyarray[i]-keyarray[j])<min) {
+    		min=keyarray[i]-keyarray[j];
+    		mini=i;
+    		minj=j;
+    	}
+    	j--;
+    }
+    System.out.println("------------------------------------");
+    System.out.println("SELECTED PRICES ARE :");
+    
+    for(int i=minj;i<=mini;i++) {
+    	System.out.println(inp.get(keyarray[i])+": "+keyarray[i]);
+    	
+    }
+    //================================================write to op
+    //File myObj = new File("filename.txt");
+    /*
+    try {
+        File myObj = new File("filename.txt");
+        myObj.createNewFile();
+      } catch (IOException e) {
+        System.out.println("An error occurred.");
+        e.printStackTrace();
+      }
+      */
+    
+    try {
+        FileWriter myWriter = new FileWriter("E:\\ABC\\Rectangle\\src\\Output.txt");
+        for(int i=minj;i<=mini;i++) {
+        myWriter.write(inp.get(keyarray[i])+": "+keyarray[i]);
+        myWriter.write("\r\n");
+        }
+        myWriter.close();
+        System.out.println("Successfully wrote to the file.");
+      } catch (IOException e) {
+        System.out.println("An error occurred.");
+        e.printStackTrace();
+      }
+    
+    
+    
+    sc.close();
+  }
+}
